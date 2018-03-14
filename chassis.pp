@@ -5,6 +5,8 @@ openssl::certificate::x509 { $fqdn:
   organization => 'Example.com',
   commonname   => $fqdn,
   altnames     => $openssl_config[hosts],
+  cnf_tpl      => 'openssl-nginx/cert.cnf.erb',
+  days         => 3650
 } ->
 file { "/vagrant/${fqdn}.cert":
 	ensure => present,
