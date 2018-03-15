@@ -36,13 +36,16 @@ commonName                      = <%= @commonname %>
 emailAddress                    = <%= @email %>
 <% end -%>
 
-<% if @req_ext == true -%>
-[ req_ext ]
 <% unless @altnames.empty? -%>
-subjectAltName = "<%= @altnames.collect! {|i| "DNS: #{i}" }.join(', ') -%>"
-<% end -%>
+[ req_ext ]
+subjectAltName = @alt_names
 <% unless @extkeyusage.empty? -%>
 extendedKeyUsage = "<%= @extkeyusage.collect! {|x| "#{x}" }.join(', ') -%>"
 <% end -%>
+
+[ alt_names ]
+<% @altnames.each_with_index do |host,index| -%>
+DNS.<%= index + 1 %> = <%= host %>
 <% end -%>
+<% end %>
 

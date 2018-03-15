@@ -5,6 +5,7 @@ openssl::certificate::x509 { $fqdn:
   organization => 'Example.com',
   commonname   => $fqdn,
   altnames     => $openssl_config[hosts],
+  extkeyusage  => [ 'serverAuth', 'clientAuth' ],
   cnf_tpl      => 'openssl-nginx/cert.cnf.erb',
   days         => 3650
 } ->
