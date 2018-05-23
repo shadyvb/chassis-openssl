@@ -44,7 +44,7 @@ extendedKeyUsage = "<%= @extkeyusage.collect! {|x| "#{x}" }.join(', ') -%>"
 <% end -%>
 
 [ alt_names ]
-DNS.1 = <%= host %>
-DNS.2 = *.<%= host %>
+DNS.1 = <%= @fqdn %>
+DNS.2 = *.<%= @fqdn %>
 <% end %>
 
