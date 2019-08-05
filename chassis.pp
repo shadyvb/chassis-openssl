@@ -16,5 +16,10 @@ file { "/vagrant/${fqdn}.cert":
   source => "/etc/ssl/certs/${fqdn}.crt",
   mode => '0644',
 }
+file { "/vagrant/${fqdn}.key":
+  ensure => present,
+  source => "/etc/ssl/certs/${fqdn}.key",
+  mode => '0644',
+}
 
 include ::openssl-nginx
