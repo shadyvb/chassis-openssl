@@ -14,15 +14,19 @@ openSSL module as extension for chassis.io. See https://github.com/Chassis/Chass
 
 ## Trusting the certificate
 
-In order to avoid security errors and get that nice green padlock in your location bar, you should add the site's SSL certificate to your trust store. The certificate can be found at chassis/{DOMAIN_HERE}.cert .
+In order to avoid security errors and get that nice green padlock in your location bar, you should add the site's SSL certificate to your trust store. The certificate can be found at `chassis/{DOMAIN_HERE}.cert` .
 
-### macOS via CLI
+### CLI methods
+
+#### macOS
 `sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain chassis/{DOMAIN_HERE}.cert`
 
-### Windows via CLI ( running with admin privileges )
+#### Windows ( running with admin privileges )
 `certutil -enterprise -f -v -AddStore "Root" "{DOMAIN_HERE}.cert"`
 
-### Firefox on any operating system:
+### GUI methods
+
+#### Firefox on any operating system:
 
 - Open Firefox's Preferences.
 - Go to Advanced -> Certificates -> View certificates -> Authorities.
@@ -35,7 +39,7 @@ Or alternatively:
 - Browse to `about:config`
 - Set `security.enterprise_roots.enabled` to true
 
-### Chrome or Safari on Mac:
+#### Chrome or Safari on Mac:
 
 - Open the "Keychain Access" app.
 - Drag the certificate into the "System" keychain.
@@ -45,7 +49,7 @@ Or alternatively:
 - Close the window. At this point you may have to enter your Mac account password.
 - Restart your browser for this to take effect.
 
-### IE and Edge on Windows ( [reference](https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68) )
+#### IE and Edge on Windows ( [reference](https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68) )
 
 - Browse to your page (e.g. https://vagrant.local) in Internet Explorer which should use your self-signed SSL certificate. You should be greeted by an error message saying your certificate is not trustworthy.
 - Click “Continue to this website”.
