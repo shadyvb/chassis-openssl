@@ -19,10 +19,14 @@ In order to avoid security errors and get that nice green padlock in your locati
 ### CLI methods
 
 #### macOS
-`sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain chassis/{DOMAIN_HERE}.cert`
+```
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain chassis/{DOMAIN_HERE}.cert
+```
 
 #### Windows ( running with admin privileges )
-`certutil -enterprise -f -v -AddStore "Root" "{DOMAIN_HERE}.cert"`
+```
+certutil -enterprise -f -v -AddStore "Root" "{DOMAIN_HERE}.cert"
+```
 
 ### GUI methods
 
