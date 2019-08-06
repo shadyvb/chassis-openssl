@@ -17,14 +17,23 @@ openSSL module as extension for chassis.io. See https://github.com/Chassis/Chass
 In order to avoid security errors and get that nice green padlock in your location bar, you should add the site's SSL certificate to your trust store. The certificate can be found at chassis/{DOMAIN_HERE}.cert .
 
 ### macOS via CLI
-`sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain chassis/{DOMAIN_HERE}`
+`sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain chassis/{DOMAIN_HERE}.cert`
+
+### Windows via CLI ( running with admin privileges )
+`certutil -enterprise -f -v -AddStore "Root" "{DOMAIN_HERE}.cert"`
 
 ### Firefox on any operating system:
 
-Open Firefox's Preferences.
-Go to Advanced -> Certificates -> View certificates -> Authorities.
-Import the certificate.
-Click "Trust this CA to identify web sites".
+- Open Firefox's Preferences.
+- Go to Advanced -> Certificates -> View certificates -> Authorities.
+- Import the certificate.
+- Click "Trust this CA to identify web sites".
+
+Or alternatively:
+
+- Open Firefox
+- Browse to `about:config`
+- Set `security.enterprise_roots.enabled` to true
 
 ### Chrome or Safari on Mac:
 
@@ -38,15 +47,15 @@ Click "Trust this CA to identify web sites".
 
 ### IE and Edge on Windows ( [reference](https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68) )
 
-> - Browse to your page (e.g. https://vagrant.local) in Internet Explorer which should use your self-signed SSL certificate. You should be greeted by an error message saying your certificate is not trustworthy.
-> - Click “Continue to this website”.
-> - Click on “Certificate error” in the address bar, and then click “View certificates”.
-> - Click “Install Certificate”.
-> - Click “Place all certificates in the following store”, and then click “Browse”. Do not rely on the preselected option to automatically select the certificate store as this will not work!
-> - Inside the dialog box, click “Trusted Root Certification Authorities”, and then click “OK”.
-> - Finish the dialog.
-> - When you get a security warning, click “Yes” to trust the certificate.
-> - Reload your page. The certificate should be working fine now.
+- Browse to your page (e.g. https://vagrant.local) in Internet Explorer which should use your self-signed SSL certificate. You should be greeted by an error message saying your certificate is not trustworthy.
+- Click “Continue to this website”.
+- Click on “Certificate error” in the address bar, and then click “View certificates”.
+- Click “Install Certificate”.
+- Click “Place all certificates in the following store”, and then click “Browse”. Do not rely on the preselected option to automatically select the certificate store as this will not work!
+- Inside the dialog box, click “Trusted Root Certification Authorities”, and then click “OK”.
+- Finish the dialog.
+- When you get a security warning, click “Yes” to trust the certificate.
+- Reload your page. The certificate should be working fine now.
 
 
 ### Other browsers / platforms
